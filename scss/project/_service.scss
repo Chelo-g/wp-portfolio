@@ -1,0 +1,29 @@
+.service {
+  background-color: $main-color1;
+  min-height: calc(100vh - 50px);
+  &__title {
+    @extend %font_Prater-Serif_bold;
+    @include font-size(100);
+    color: $main-color2;
+  }
+  &__box {
+    margin-left: $left-margin;
+    max-width: $max-width;
+  }
+  &__items {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@include mq {
+  .service {
+    background-color: $main-color1;
+    &__title {
+      @include font-size(100/1.5);
+    }
+    &__items {
+      flex-direction: column;
+    }
+  }
+}

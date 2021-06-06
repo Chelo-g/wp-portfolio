@@ -1,0 +1,40 @@
+//font
+%font_Prater-Serif_regular {
+  font-family: ff-prater-serif-web, serif;
+  font-weight: 400;
+  font-style: normal;
+}
+%font_Prater-Serif_bold {
+  font-family: ff-prater-serif-web, serif;
+  font-weight: 700;
+  font-style: normal;
+}
+%font_Ryo-Text-PlusN-M {
+  font-family: ryo-text-plusn, serif;
+  font-weight: 400;
+  font-style: normal;
+}
+%font_vdl-logojrblack {
+  font-family: vdl-logojrblack, sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+//font color
+$main-color1: #000000;
+$main-color2: #fffff7;
+$sub-color1: #e85454;
+$backgroud-color1: #ececec;
+//font-size calc
+//基準となる値を代入する
+$base-fontsize1: 16;
+$base-widthsize1: 1200;
+$base-fontsize2: 12;
+$base-widthsize2: 375;
+
+$base-font-slope: ($base-fontsize1 - $base-fontsize2)/ ($base-widthsize1 -
+      $base-widthsize2);
+$base-font-intercept: $base-fontsize1 - $base-widthsize1 * $base-font-slope;
+
+$base-font-size: #{"calc((100vw"} * $base-font-slope #{") + "}
+  $base-font-intercept#{"px)"};

@@ -1,0 +1,17 @@
+.footer {
+  height: 50px;
+  background-color: $main-color1;
+  display: flex;
+  align-items: center;
+  &__box {
+    margin-left: $left-margin;
+    max-width: $max-width;
+  }
+  &--white {
+    margin-top: auto;
+    height: 50px;
+    background-color: $main-color2;
+    display: flex;
+    align-items: center;
+  }
+}

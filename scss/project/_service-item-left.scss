@@ -1,0 +1,61 @@
+.service-item-left {
+  display: flex;
+  flex-direction: column;
+  &__title {
+    @extend %font_Prater-Serif_regular;
+    @include font-size(60);
+    color: $main-color2;
+  }
+  &__sub-title {
+    @extend %font_Ryo-Text-PlusN-M;
+    @include font-size(18);
+    color: $main-color2;
+  }
+  &__message {
+    @extend %font_Ryo-Text-PlusN-M;
+    @include font-size(14);
+    color: $main-color2;
+    line-height: calc(30 / 18);
+    padding-top: 0.7rem;
+  }
+  &__title-box {
+    display: flex;
+    flex-direction: row;
+    width: 375px;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: $backgroud-color1 solid 3px;
+  }
+}
+
+@include mq {
+  .service-item-left {
+    display: flex;
+    flex-direction: column;
+    &__title {
+      @include font-size(60/1.2);
+      color: $main-color2;
+    }
+    &__sub-title {
+      @include font-size(18/1.2);
+      color: $main-color2;
+    }
+    &__message {
+      @include font-size(12);
+      color: $main-color2;
+      line-height: calc(30 / 18);
+      padding-top: 0.7rem;
+    }
+    &__title-box {
+      display: flex;
+      flex-direction: row;
+      width: 300px;
+      align-items: flex-end;
+      justify-content: space-between;
+      border-bottom: $backgroud-color1 solid 3px;
+    }
+    &__img {
+      height: 5rem;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+$layout-width-inner: 1366px;
+$min-width: 1140px;
+$breakpoints: (
+  "sp": "screen and (max-width: #{$min-width})",
+  "tab": "screen and (max-width: #{$layout-width-inner - 1px})",
+  "pc": "screen and (min-width: #{$layout-width-inner})",
+);
+@mixin mq($breakpoint: sp) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin font-size($px) {
+  font-size: ($px/16) + rem;
+}
+
+/* @mixin padding-top($px) {
+  padding-top: ($px/16) + rem;
+}
+@mixin padding-bottom($px) {
+  padding-bottom: ($px/16) + rem;
+}
+@mixin padding-left($px) {
+  padding-left: ($px/16) + rem;
+}
+@mixin padding-right($px) {
+  padding-right: ($px/16) + rem;
+} */
+
+@mixin res_fs($min, $max) {
+  font-size: clamp(($min/16) + rem, calc(5vw+1rem), ($max/16) + rem);
+}

@@ -43,15 +43,16 @@
 
 <body>
     <header class="header">
-        <h1 class="logo">
-            Chelo's portfolio
-        </h1>
+        <h1 class="logo"><a href="/">
+                Chelo's portfolio
+            </a></h1>
         <nav class="nav">
             <ul class="nav__items">
-                <li class="nav__item" data-text="About"><a class="nav__link" href="#about">About</a></li>
-                <li class="nav__item" data-text="Service"><a class="nav__link" href="#service">Service</a></li>
-                <li class="nav__item" data-text="Work"><a class="nav__link" href="#work">Work</a></li>
-                <li class="nav__item" data-text="Contact"> <a Contact class="nav__link" href="#contact">Contact</a></li>
+                <li class="nav__item" data-text="About"><a class="nav__link" href="about">About</a></li>
+                <li class="nav__item" data-text="Service"><a class="nav__link" href="service">Service</a></li>
+                <li class="nav__item" data-text="Work"><a class="nav__link" href="work">Work</a></li>
+                <li class="nav__item" data-text="Work"><a class="nav__link" href="blog">Blog</a></li>
+                <li class="nav__item" data-text="Contact"> <a Contact class="nav__link" href="contact">Contact</a></li>
             </ul>
         </nav>
         <div class="btn-burger">

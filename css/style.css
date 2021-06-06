@@ -8,7 +8,7 @@
   font-style: normal;
 }
 
-.logo, .nav__item, .about__title, .service__title, .work__title, .contact__title, .copyright {
+.logo, .nav__item, .about__title, .service__title, .work__title, .contact__title, .copyright, .copyright--white {
   font-family: ff-prater-serif-web, serif;
   font-weight: 700;
   font-style: normal;
@@ -68,9 +68,40 @@
   }
 }
 
+.footer {
+  height: 50px;
+  background-color: #000000;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .footer__box {
   margin-left: 10vw;
   max-width: 1140px;
+}
+
+.footer--white {
+  margin-top: auto;
+  height: 50px;
+  background-color: #fffff7;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body.page-service {
+  background-color: #000000;
 }
 
 .btn-contact {
@@ -337,6 +368,7 @@
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
+  min-height: calc(100vh - 50px);
 }
 
 .about__box {
@@ -457,6 +489,7 @@
 
 .service {
   background-color: #000000;
+  min-height: calc(100vh - 50px);
 }
 
 .service__title {
@@ -927,9 +960,28 @@
 
 .copyright {
   font-size: 1.25rem;
+  color: #fffff7;
+}
+
+.copyright--white {
+  font-size: 1.25rem;
+  color: #000000;
 }
 
 .margin__article {
   height: 5vh;
+}
+
+.margin__page-top {
+  height: 150px;
+}
+
+@media screen and (max-width: 1140px) {
+  .margin__article {
+    height: 5vh;
+  }
+  .margin__page-top {
+    height: 100px;
+  }
 }
 /*# sourceMappingURL=style.css.map */

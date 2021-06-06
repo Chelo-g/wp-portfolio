@@ -1,0 +1,10 @@
+.copyright {
+  @extend %font_Prater-Serif_bold;
+  @include font-size(20);
+  color: $main-color2;
+  &--white {
+    @extend %font_Prater-Serif_bold;
+    @include font-size(20);
+    color: $main-color1;
+  }
+}

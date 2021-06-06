@@ -1,0 +1,59 @@
+.top-view {
+  width: 100%;
+  &__img {
+    width: 100%;
+    padding-top: 50vh;
+    background: url("../img/top_panda.jpg") no-repeat center;
+    background-size: cover;
+    background-position: 70%;
+  }
+  &__message {
+    @extend %font_vdl-logojrblack;
+    @include font-size(100);
+    vertical-align: baseline;
+    margin-left: $left-margin;
+    color: $main-color2;
+    -webkit-text-stroke: $main-color1 0.1rem;
+    &--first {
+      @extend %font_vdl-logojrblack;
+      @include font-size(300);
+      color: $main-color1;
+      -webkit-text-stroke: $main-color2 0.1rem;
+    }
+    &--you {
+      @extend %font_vdl-logojrblack;
+      @include font-size(100);
+      color: $main-color1;
+      -webkit-text-stroke: $main-color2 0.1rem;
+    }
+  }
+}
+
+@include mq {
+  .top-view {
+    width: 100vw;
+    &__img {
+      width: 100vw;
+      padding-top: 66vh;
+      background: url("../img/top_panda.jpg") no-repeat center;
+      background-size: cover;
+      background-position: 60%;
+    }
+    &__message {
+      @include font-size(100/2.5);
+      margin-left: $left-margin;
+      color: $main-color2;
+      -webkit-text-stroke: $main-color1 0.1rem;
+      &--first {
+        @include font-size(100/1.5);
+        color: $main-color1;
+        -webkit-text-stroke: $main-color2 0.1rem;
+      }
+      &--you {
+        @include font-size(100/2.5);
+        color: $main-color1;
+        -webkit-text-stroke: $main-color2 0.1rem;
+      }
+    }
+  }
+}

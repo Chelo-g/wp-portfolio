@@ -1,0 +1,14 @@
+.logo {
+  @extend %font_Prater-Serif_bold;
+  @include font-size(50);
+  & span:nth-child(even) {
+    color: $main-color2;
+    -webkit-text-stroke: 0.1rem $main-color1;
+  }
+}
+
+@include mq {
+  .logo {
+    @include font-size(30);
+  }
+}

@@ -1,0 +1,19 @@
+.margin {
+  &__article {
+    height: 5vh;
+  }
+  &__page-top {
+    height: 150px;
+  }
+}
+
+@include mq {
+  .margin {
+    &__article {
+      height: 5vh;
+    }
+    &__page-top {
+      height: 100px;
+    }
+  }
+}

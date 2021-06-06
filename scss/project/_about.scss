@@ -1,0 +1,72 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 50px);
+  &__box {
+    margin-left: $left-margin;
+    max-width: $max-width;
+  }
+  &__title {
+    @extend %font_Prater-Serif_bold;
+    @include font-size(100);
+  }
+  &__message {
+    min-width: 19rem;
+    @extend %font_Ryo-Text-PlusN-M;
+    @include font-size(18);
+    line-height: calc(30 / 18);
+  }
+  &__img {
+    height: 75%;
+    width: auto;
+  }
+  &__img + &__img {
+    padding-left: 25px;
+  }
+
+  &__message-block {
+    display: flex;
+    flex-direction: row;
+  }
+  &__left-block {
+    display: flex;
+    flex-direction: column;
+  }
+  &__right-block {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+}
+
+@include mq {
+  .about {
+    &__title {
+      @include font-size(100/1.5);
+    }
+    &__message {
+      min-width: 19rem;
+      @include font-size(15);
+      line-height: calc(20 / 18);
+    }
+    &__message-block {
+      display: flex;
+      flex-direction: column;
+    }
+    &__left-block {
+      display: flex;
+      flex-direction: column;
+    }
+    &__right-block {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+    }
+    &__img {
+      padding-top: 3vh;
+    }
+    &__img + &__img {
+      display: none;
+    }
+  }
+}
