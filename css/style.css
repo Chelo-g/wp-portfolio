@@ -1,6 +1,5 @@
 /*!
-  Panda Coding
-  make by Chelo
+  Chelo's portfolio
 */
 .btn-contact, .service-item-left__title, .service-item-right__title, .contact__notice::first-letter {
   font-family: ff-prater-serif-web, serif;
@@ -8,7 +7,7 @@
   font-style: normal;
 }
 
-.logo, .nav__item, .about__title, .service__title, .work__title, .contact__title, .copyright, .copyright--white {
+.logo, .nav__item, .about__title, .service__title, .work__title, .contact__title, .copyright, .copyright--white, .work-info__title {
   font-family: ff-prater-serif-web, serif;
   font-weight: 700;
   font-style: normal;
@@ -303,7 +302,7 @@ body.page-service {
 
 .top-view__img {
   width: 100%;
-  padding-top: 50vh;
+  padding-top: 30vh;
   background: url("../img/top_panda.jpg") no-repeat center;
   background-size: cover;
   background-position: 70%;
@@ -966,6 +965,46 @@ body.page-service {
 .copyright--white {
   font-size: 1.25rem;
   color: #000000;
+}
+
+.work-list__link {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5rem;
+  border-bottom: solid 1px #000000;
+}
+
+.work-list__category {
+  padding: 5px 8px;
+  border: solid 1px #6a808a;
+  margin: 1rem 1.5rem;
+}
+
+.work-info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.work-info__box {
+  margin-left: 10vw;
+  max-width: 1140px;
+}
+
+.work-info__title {
+  font-size: 6.25rem;
 }
 
 .margin__article {

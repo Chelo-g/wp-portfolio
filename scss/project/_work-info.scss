@@ -1,0 +1,11 @@
+.work-info {
+  display: flex;
+  &__box {
+    margin-left: $left-margin;
+    max-width: $max-width;
+  }
+  &__title {
+    @extend %font_Prater-Serif_bold;
+    @include font-size(100);
+  }
+}

@@ -1,0 +1,14 @@
+.work-list {
+  &__link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: solid 1px $main-color1;
+  }
+  &__category {
+    padding: 5px 8px;
+    border: solid 1px #6a808a;
+    margin: 1rem 1.5rem;
+  }
+}
