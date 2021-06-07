@@ -1,7 +1,7 @@
 .work-info {
+  margin-left: $left-margin;
   display: flex;
   &__box {
-    margin-left: $left-margin;
     max-width: $max-width;
   }
   &__title {

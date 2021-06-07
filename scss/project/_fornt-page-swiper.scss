@@ -1,0 +1,17 @@
+.fornt-page-swiper {
+  width: calc(100% - 100px);
+  /* 前・次ページボタンの幅をそれぞれ50pxとして、その分を引く */
+  padding-bottom: 50px;
+  /* ★ページネーション・スクロールバー分の余白50pxを下に取る */
+  box-sizing: border-box;
+  &__pagination {
+    --swiper-theme-color: #000;
+  }
+  &__btn {
+    --swiper-navigation-color: #fffff7;
+    /* ページネーション・スクロールバー（50px）を除く縦位置の中央（＝スライドの高さの中央）に一旦配置 */
+    top: calc((100% - 50px) * 0.5);
+    /* ボタンの高さ（44px）の半分のネガティブマージンで上に少しずらす */
+    margin-top: -22px;
+  }
+}

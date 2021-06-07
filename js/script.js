@@ -47,3 +47,24 @@ function toggle_burger_menu() {
 jQuery(btn_burger).on("click", function () {
   toggle_burger_menu();
 });
+
+/* SwiperのJS https://swiperjs.com/
+  各class名は変更不可。
+  CSSの追記はクラス名を別途追加して実施すること*/
+const swiper = new Swiper(".swiper-container", {
+  // Optional parameters
+  loop: true,
+  //loopedSlides: 4,
+  speed: 800,
+  slidesPerView: 1.5,
+  centeredSlides: true, // If we need pagination
+  pagination: {
+    el: ".swiper-pagination",
+  },
+
+  // Navigation arrows
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
