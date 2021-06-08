@@ -11,7 +11,7 @@
     <div class="margin__article"></div>
     <div class="work-info">
         <div class="work-info__box">
-            <h1 class="work-info__title">Works</h1>
+            <h1 class="work-info__title"><a class="nav__link" href="<?php echo get_category_link(3); ?>">Works</a></h1>
             <div class="swiper-container fornt-page-swiper">
                 <ul class="work-list swiper-wrapper">
                     <?php if (have_posts()) :
@@ -43,6 +43,60 @@
             </div>
         </div>
     </div>
-
+    <div class="margin__box">
+        <div class="food-info">
+            <h1 class="food-info__title"><a class="nav__link"
+                    href="<?php echo get_post_type_archive_link('china-food'); ?>">China
+                    foods</a>
+            </h1>
+            <div class="swiper-container fornt-page-swiper">
+                <ul class="work-list swiper-wrapper">
+                    <?php
+                    $news_query = new WP_Query(
+                        array(
+                            'post_type'      => 'china-food',
+                            'posts_per_page' => 6,
+                        )
+                    );
+                    ?>
+                    <?php if ($news_query->have_posts()) :
+                        while ($news_query->have_posts()) : $news_query->the_post(); ?>
+                    <li class="work-list__item swiper-slide">
+                        <?php the_post_thumbnail('large', array('class' => 'work-list__thumbnail')); ?>
+                        <a class="work-list__link" href="<?php the_permalink(); ?>">
+                            <div class="work-list__category">
+                                <?php
+                                        if (mb_strlen($post->post_title, 'UTF-8') > 20) {
+                                            $title = mb_substr($post->post_title, 0, 20, 'UTF-8');
+                                            echo $title . '……';
+                                        } else {
+                                            echo $post->post_title;
+                                        }
+                                        ?>
+                            </div>
+                            <div class="work-list__title">
+                                <?php
+                                        if (mb_strlen($post->post_content, 'UTF-8') > 200) {
+                                            $content = str_replace('\n', '', mb_substr(strip_tags($post->post_content), 0, 200, 'UTF-8'));
+                                            echo $content . '……';
+                                        } else {
+                                            echo str_replace('\n', '', strip_tags($post->post_content));
+                                        }
+                                        ?>
+                            </div>
+                        </a>
+                    </li>
+                    <?php endwhile;
+                    endif;
+                    wp_reset_postdata(); ?>
+                </ul>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination fornt-page-swiper__pagination"></div>
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev fornt-page-swiper__btn"></div>
+                <div class="swiper-button-next fornt-page-swiper__btn"></div>
+            </div>
+        </div>
+    </div>
 </main>
 <?php get_footer(); ?>

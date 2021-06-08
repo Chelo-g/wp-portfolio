@@ -14,8 +14,8 @@ add_action('wp_enqueue_scripts', 'my_scripts');
 
 function theme_setup()
 {
-    // アイキャッチ画像を有効化。
-    add_theme_support('post-thumbnails');
+    // アイキャッチ画像を有効化
+    add_theme_support('post-thumbnails', array('post', 'china-food'));
 }
 add_action('after_setup_theme', 'theme_setup');
 
@@ -43,3 +43,31 @@ function the_pagination()
     echo '</li></ul>';
     echo '</nav>';
 }
+
+
+function create_post_type()
+{
+    register_post_type('china-food', [ // 投稿タイプ名の定義
+        'labels' => [
+            'name'          => '中華料理', // 管理画面上で表示する投稿タイプ名
+            'singular_name' => '中華料理',    // カスタム投稿の識別名
+        ],
+        'public'        => true,  // 投稿タイプをpublicにするか
+        'has_archive'   => true, // アーカイブ機能ON/OFF
+        'menu_position' => 5,     // 管理画面上での配置場所
+        'show_in_rest'  => true,  // 5系から出てきた新エディタ「Gutenberg」を有効にする
+        'supports' => array(
+            'title',
+            'editor',
+            'thumbnail',
+            'revisions',
+            'excerpt',
+            'custom-fields',
+        )
+    ]);
+    /*     //カテゴリを投稿と共通設定にする
+    register_taxonomy_for_object_type('category', 'china-food');
+    //タグを投稿と共通設定にする
+    register_taxonomy_for_object_type('post_tag', 'china-food'); */
+}
+add_action('init', 'create_post_type');

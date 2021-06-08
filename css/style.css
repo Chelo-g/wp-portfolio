@@ -8,7 +8,7 @@
   font-style: normal;
 }
 
-.logo, .nav__item, .about__title, .service__title, .work__title, .contact__title, .copyright, .copyright--white, .work-info__title {
+.logo, .nav__item, .about__title, .service__title, .work__title, .contact__title, .copyright, .copyright--white, .food-info__title, .work-info__title {
   font-family: ff-prater-serif-web, serif;
   font-weight: 700;
   font-style: normal;
@@ -55,6 +55,7 @@
   width: 100%;
   position: fixed;
   top: 0;
+  z-index: 10;
 }
 
 @media screen and (max-width: 1140px) {
@@ -1053,6 +1054,10 @@ body.page-service {
   display: flex;
 }
 
+.food-info__title {
+  font-size: 3.125rem;
+}
+
 /* Contact Form7 */
 .contact7 {
   max-width: 100%;
@@ -1356,7 +1361,7 @@ body.page-service {
 }
 
 .margin__box {
-  padding-left: 10vw;
+  margin-left: 10vw;
   max-width: 1140px;
 }
 
