@@ -30,4 +30,4 @@
             </div>
         </div>
 </article>
-<?php get_footer('service'); ?>
+<?php get_footer('white'); ?>

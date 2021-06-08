@@ -42,7 +42,6 @@
                 <div class="swiper-button-next fornt-page-swiper__btn"></div>
             </div>
         </div>
-        <?php if (function_exists("the_pagination")) the_pagination(); ?>
     </div>
 
 </main>

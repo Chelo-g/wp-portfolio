@@ -3,7 +3,14 @@
     height: 5vh;
   }
   &__page-top {
-    height: 150px;
+    height: 125px;
+  }
+  &__pagination {
+    height: 30px;
+  }
+  &__box {
+    padding-left: $left-margin;
+    max-width: $max-width;
   }
 }
 
@@ -13,7 +20,7 @@
       height: 5vh;
     }
     &__page-top {
-      height: 100px;
+      height: 50px;
     }
   }
 }

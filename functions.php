@@ -26,7 +26,7 @@ function the_pagination()
     if ($wp_query->max_num_pages <= 1)
         return;
     echo '<nav class="pagination">';
-    echo paginate_links(array(
+    $page_links = paginate_links(array(
         'base' => str_replace($bignum, '%#%', esc_url(get_pagenum_link($bignum))),
         'format' => '',
         'current' => max(1, get_query_var('paged')),
@@ -35,7 +35,11 @@ function the_pagination()
         'next_text' => '&rarr;',
         'type' => 'list',
         'end_size' => 3,
-        'mid_size' => 3
+        'mid_size' => 3,
+        'type' => 'array'
     ));
+    echo '<ul class="page-number-list"><li>';
+    echo join('</li><li>', $page_links);
+    echo '</li></ul>';
     echo '</nav>';
 }

@@ -4,6 +4,11 @@
   min-width: $min-width;
   justify-content: space-between;
   @extend %font_Ryo-Text-PlusN-M;
+  &--workpage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
   &__item {
     display: flex;
     flex-direction: column;
@@ -12,6 +17,11 @@
     border-bottom: solid 1px $main-color1;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
+    &--workpage {
+      width: 45%;
+      margin-bottom: 1rem;
+      border-bottom: solid 1px $main-color1;
+    }
   }
   &__link {
     display: flex;
@@ -19,9 +29,7 @@
     align-items: center;
     justify-content: flex-start;
     padding: 0.5rem;
-    padding-left: 0; /*
-    border-bottom: solid 1px $main-color1;
-    min-width: 540px; */
+    padding-left: 0;
   }
   &__category {
     padding: 5px 8px;
@@ -29,8 +37,59 @@
     margin: 0 1.5rem;
   }
   &__thumbnail {
-    //max-width: 512px;
     max-width: 100%;
     height: auto;
+  }
+}
+
+@include mq() {
+  .work-list {
+    display: flex;
+    flex-direction: row;
+    min-width: $min-width;
+    justify-content: space-between;
+    //@extend %font_Ryo-Text-PlusN-M;
+    &--workpage {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    &__item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      box-sizing: content-box;
+      border-bottom: solid 1px $main-color1;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+      &--workpage {
+        width: 90%;
+        margin-bottom: 1rem;
+        border-bottom: solid 1px $main-color1;
+      }
+    }
+    &__link {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0.5rem;
+      padding-left: 0;
+      width: 100%;
+    }
+    &__category {
+      display: none;
+      padding: 5px 8px;
+      border: solid 1px #6a808a;
+      margin: 0 1.5rem;
+    }
+    &__title {
+      padding-left: 1rem;
+    }
+    &__thumbnail {
+      max-width: 100%;
+      height: auto;
+    }
   }
 }
