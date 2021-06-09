@@ -47,7 +47,8 @@
         <div class="food-info">
             <h1 class="food-info__title"><a class="nav__link" href="
             <?php
-            echo get_category_link(get_cat_ID('Food')); ?>">
+            //echo get_category_link(get_cat_ID('Food'));
+            echo get_post_type_archive_link('food'); ?>">
                     foods</a>
             </h1>
             <div class="swiper-container fornt-page-swiper">

@@ -14,7 +14,6 @@ add_action('wp_enqueue_scripts', 'my_scripts');
 
 function theme_setup()
 {
-    // アイキャッチ画像を有効化
     add_theme_support('post-thumbnails', array('post', 'food'));
 }
 add_action('after_setup_theme', 'theme_setup');
@@ -44,6 +43,20 @@ function the_pagination()
     echo '</nav>';
 }
 
+function change_posts_per_page($query)
+{
+    /* 管理画面,メインクエリに干渉しないために必須 */
+    if (is_admin() || !$query->is_main_query()) {
+        return;
+    }
+    /* カテゴリーページの表示件数を5件にする */
+    if ($query->is_archive()) {
+        $query->set('posts_per_page', '6');
+        return;
+    }
+}
+add_action('pre_get_posts', 'change_posts_per_page');
+
 
 function create_post_type()
 {
@@ -64,7 +77,7 @@ function create_post_type()
                 'custom-fields', //カスタムフィールド
                 'revisions',  //リビジョンを保存
             ),
-            'taxonomies' => array('food_cat', 'food_tag', 'category', 'post_tag')
+            'taxonomies' => array('food-type',  'category', 'post_tag')
         )
     );
     /*     //カテゴリを投稿と共通設定にする
@@ -72,10 +85,10 @@ function create_post_type()
     register_taxonomy_for_object_type('category', 'china-food');
     //タグを投稿と共通設定にする
     register_taxonomy_for_object_type('post_tag', 'china-food'); */
-    register_taxonomy('food-type', 'result', array(
+    register_taxonomy('food-type', 'food', array(
         'hierarchical' => true,
         'labels' => array( /*   表示させる文字 */
-            'name' => 'カテゴリ',
+            'name' => '食べ物タイプ',
             'singular_name' => 'カテゴリ',
             'search_items' =>  'カテゴリを検索',
             'all_items' => 'すべてのカテゴリ',

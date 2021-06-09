@@ -53,7 +53,8 @@
                 <li class="nav__item"><a class="nav__link" href="<?php echo home_url('service'); ?>">Service</a></li>
                 <li class="nav__item"><a class="nav__link" href="<?php echo get_category_link(3); ?>">Work</a></li>
                 <li class="nav__item"><a class="nav__link" href="<?php echo get_category_link(2); ?>">Practice</a></li>
-                <li class="nav__item"><a class="nav__link" href="<?php echo get_category_link(5); ?>">Food</a></li>
+                <li class="nav__item"><a class="nav__link"
+                        href="<?php echo  get_post_type_archive_link('food'); ?>">Food</a></li>
                 <li class="nav__item"> <a Contact class="nav__link"
                         href="<?php echo home_url('contact'); ?>">Contact</a></li>
             </ul>
