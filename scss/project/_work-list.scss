@@ -1,7 +1,7 @@
 .work-list {
   display: flex;
   flex-direction: row;
-  min-width: $min-width;
+  max-width: $max-width;
   justify-content: space-between;
   @extend %font_Ryo-Text-PlusN-M;
   &--workpage {
@@ -19,6 +19,11 @@
     margin-right: 0.5rem;
     &--workpage {
       width: 45%;
+      margin-bottom: 1rem;
+      border-bottom: solid 1px $main-color1;
+    }
+    &--singlepage {
+      max-width: calc(100vw - 5vw);
       margin-bottom: 1rem;
       border-bottom: solid 1px $main-color1;
     }
@@ -46,7 +51,7 @@
   .work-list {
     display: flex;
     flex-direction: row;
-    min-width: $min-width;
+    max-width: $max-width;
     justify-content: space-between;
     //@extend %font_Ryo-Text-PlusN-M;
     &--workpage {

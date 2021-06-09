@@ -1,0 +1,37 @@
+.single-nav {
+  max-width: calc(100vw - 5vw);
+  padding-top: 20px;
+  border-top: 1px solid $main-color1;
+  display: flex;
+  justify-content: space-between;
+  &__item {
+    display: flex;
+    flex-direction: column;
+    &--right {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+    }
+  }
+  &__thumbnail {
+    max-width: calc(100vw - 5vw);
+    height: auto;
+  }
+}
+
+@include mq() {
+  .single-nav {
+    display: flex;
+    flex-direction: column;
+    &__item {
+      display: flex;
+      flex-direction: column;
+      &--right {
+        padding-top: 30px;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+      }
+    }
+  }
+}

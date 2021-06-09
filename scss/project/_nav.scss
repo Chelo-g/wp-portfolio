@@ -4,7 +4,7 @@
   }
   &__item {
     @extend %font_Prater-Serif_bold;
-    @include font-size(40);
+    @include font-size(30);
     &:hover {
       color: $main-color2;
       -webkit-text-stroke: $main-color1 2px;
@@ -12,7 +12,7 @@
     }
   }
   &__item + &__item {
-    padding-left: 40px;
+    padding-left: 20px;
   }
   &__link {
     &:visited {
