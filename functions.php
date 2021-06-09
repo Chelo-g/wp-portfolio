@@ -15,7 +15,7 @@ add_action('wp_enqueue_scripts', 'my_scripts');
 function theme_setup()
 {
     // アイキャッチ画像を有効化
-    add_theme_support('post-thumbnails', array('post', 'china-food'));
+    add_theme_support('post-thumbnails', array('post', 'food'));
 }
 add_action('after_setup_theme', 'theme_setup');
 
@@ -47,27 +47,71 @@ function the_pagination()
 
 function create_post_type()
 {
-    register_post_type('china-food', [ // 投稿タイプ名の定義
-        'labels' => [
-            'name'          => '中華料理', // 管理画面上で表示する投稿タイプ名
-            'singular_name' => '中華料理',    // カスタム投稿の識別名
-        ],
-        'public'        => true,  // 投稿タイプをpublicにするか
-        'has_archive'   => true, // アーカイブ機能ON/OFF
-        'menu_position' => 5,     // 管理画面上での配置場所
-        'show_in_rest'  => true,  // 5系から出てきた新エディタ「Gutenberg」を有効にする
-        'supports' => array(
-            'title',
-            'editor',
-            'thumbnail',
-            'revisions',
-            'excerpt',
-            'custom-fields',
+    register_post_type(
+        'food', //投稿タイプ名（第1パラメータ）
+        array(  //第2パラメータの配列
+            'label' => '食べ物',  //カスタム投稿タイプのラベル（管理画面のメニューに表示される）
+            'public' => true,  // 管理画面に表示しサイト上にも表示する
+            'hierarchical' => false,  //★固定ページのように階層構造（親子関係）を持たせる
+            'has_archive' => true,  //trueにすると投稿した記事の一覧ページを作成することができる
+            'show_in_rest' => true,  //Gutenberg（REST API）を有効化
+            'menu_position' => 5, //「投稿」の下に追加
+            'supports' => array(  //記事編集画面に表示する項目を配列で指定
+                'title',  //タイトル
+                'editor',  //本文の編集機能
+                'thumbnail',  //アイキャッチ画像
+                'excerpt',  //抜粋
+                'custom-fields', //カスタムフィールド
+                'revisions',  //リビジョンを保存
+            ),
+            'taxonomies' => array('food_cat', 'food_tag', 'category', 'post_tag')
         )
-    ]);
+    );
     /*     //カテゴリを投稿と共通設定にする
+    共通すると思い通りの挙動にならないことがありそうなので、非推奨
     register_taxonomy_for_object_type('category', 'china-food');
     //タグを投稿と共通設定にする
     register_taxonomy_for_object_type('post_tag', 'china-food'); */
+    register_taxonomy('food-type', 'result', array(
+        'hierarchical' => true,
+        'labels' => array( /*   表示させる文字 */
+            'name' => 'カテゴリ',
+            'singular_name' => 'カテゴリ',
+            'search_items' =>  'カテゴリを検索',
+            'all_items' => 'すべてのカテゴリ',
+            'parent_item' => '親分類',
+            'parent_item_colon' => '親分類：',
+            'edit_item' => '編集',
+            'update_item' => '更新',
+            'add_new_item' => 'カテゴリを追加',
+            'new_item_name' => '名前',
+        ),
+        'show_ui' => true, /* 管理画面にメニューを作る */
+        'rewrite' => array(
+            'slug' => 'foods', 'with_front' => true, 'hierarchical' => true
+        ),
+        'capabilities' => array(
+            'assign_terms' => 'edit_guides',
+            'edit_terms' => 'publish_guides'
+        )
+    ));
 }
 add_action('init', 'create_post_type');
+
+//カテゴリーアーカイブにカスタム投稿タイプ food を含める（表示させる）
+function add_my_post_category_archive($query)
+{
+    if (!is_admin() && $query->is_main_query() && $query->is_category()) {
+        $query->set('post_type', array('post', 'food'));
+    }
+}
+add_action('pre_get_posts', 'add_my_post_category_archive');
+
+//タグアーカイブにカスタム投稿タイプ food を含める（表示させる）
+function add_my_post_tag_archive($query)
+{
+    if (!is_admin() && $query->is_main_query() && $query->is_tag()) {
+        $query->set('post_type', array('post', 'food'));
+    }
+}
+add_action('pre_get_posts', 'add_my_post_tag_archive');

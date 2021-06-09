@@ -45,8 +45,9 @@
     </div>
     <div class="margin__box">
         <div class="food-info">
-            <h1 class="food-info__title"><a class="nav__link"
-                    href="<?php echo get_post_type_archive_link('china-food'); ?>">China
+            <h1 class="food-info__title"><a class="nav__link" href="
+            <?php
+            echo get_category_link(get_cat_ID('Food')); ?>">
                     foods</a>
             </h1>
             <div class="swiper-container fornt-page-swiper">
@@ -54,7 +55,14 @@
                     <?php
                     $news_query = new WP_Query(
                         array(
-                            'post_type'      => 'china-food',
+                            'post_type' => array('post', 'food'),
+                            'tax_query' => array(
+                                array(
+                                    'taxonomy' => 'category',
+                                    'field'    => 'slug',
+                                    'terms'    => 'Food',
+                                ),
+                            ),
                             'posts_per_page' => 6,
                         )
                     );
@@ -63,28 +71,15 @@
                         while ($news_query->have_posts()) : $news_query->the_post(); ?>
                     <li class="work-list__item swiper-slide">
                         <?php the_post_thumbnail('large', array('class' => 'work-list__thumbnail')); ?>
-                        <a class="work-list__link" href="<?php the_permalink(); ?>">
+                        <div class="work-list__link">
                             <div class="work-list__category">
-                                <?php
-                                        if (mb_strlen($post->post_title, 'UTF-8') > 20) {
-                                            $title = mb_substr($post->post_title, 0, 20, 'UTF-8');
-                                            echo $title . '……';
-                                        } else {
-                                            echo $post->post_title;
-                                        }
-                                        ?>
+                                <?php $cat = get_the_category();
+                                        echo $cat[0]->name; ?>
                             </div>
                             <div class="work-list__title">
-                                <?php
-                                        if (mb_strlen($post->post_content, 'UTF-8') > 200) {
-                                            $content = str_replace('\n', '', mb_substr(strip_tags($post->post_content), 0, 200, 'UTF-8'));
-                                            echo $content . '……';
-                                        } else {
-                                            echo str_replace('\n', '', strip_tags($post->post_content));
-                                        }
-                                        ?>
+                                <?php the_title(); ?>
                             </div>
-                        </a>
+                        </div>
                     </li>
                     <?php endwhile;
                     endif;
