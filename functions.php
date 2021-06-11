@@ -12,6 +12,20 @@ function my_scripts()
 }
 add_action('wp_enqueue_scripts', 'my_scripts');
 
+function sample_scripts()
+{
+    // sample-pageというページの場合のみ
+    if (is_page(['sample-page'])) {
+        // phpの値を受け取るjavascriptを読み込みます。
+        wp_enqueue_script('some_handle', 'path/to/myscript.js', array('jquery'), false, true);
+        // phpの配列を$data_array変数に格納します
+        $data_array = array('some_string' => 'texttext', 'a_value' => '10');
+        // javascript変数で処理します。
+        wp_localize_script('some_handle', 'object_name', $data_array);
+    }
+}
+add_action('wp_enqueue_scripts', 'sample_scripts');
+
 function theme_setup()
 {
     add_theme_support('post-thumbnails', array('post', 'food'));
@@ -49,10 +63,15 @@ function change_posts_per_page($query)
     if (is_admin() || !$query->is_main_query()) {
         return;
     }
-    /* カテゴリーページの表示件数を5件にする */
+    /* アーカイブページの表示件数を6件にする
+    アーカイブページは以下の項目｢すべて｣含まれるので注意
+    カテゴリー、タグ、その他のタクソノミー項目、カスタム投稿タイプアーカイブ、作成者、日付別
+    */
     if ($query->is_archive()) {
         $query->set('posts_per_page', '6');
-        return;
+    }
+    if ($query->is_category()) {
+        $query->set('posts_per_page', '4');
     }
 }
 add_action('pre_get_posts', 'change_posts_per_page');
@@ -77,39 +96,68 @@ function create_post_type()
                 'custom-fields', //カスタムフィールド
                 'revisions',  //リビジョンを保存
             ),
-            'taxonomies' => array('food-type',  'category', 'post_tag')
+            'taxonomies' => array('food-type',  'food-year')
         )
     );
-    /*     //カテゴリを投稿と共通設定にする
-    共通すると思い通りの挙動にならないことがありそうなので、非推奨
-    register_taxonomy_for_object_type('category', 'china-food');
-    //タグを投稿と共通設定にする
-    register_taxonomy_for_object_type('post_tag', 'china-food'); */
-    register_taxonomy('food-type', 'food', array(
-        'hierarchical' => true,
-        'labels' => array( /*   表示させる文字 */
-            'name' => '食べ物タイプ',
-            'singular_name' => 'カテゴリ',
-            'search_items' =>  'カテゴリを検索',
-            'all_items' => 'すべてのカテゴリ',
-            'parent_item' => '親分類',
-            'parent_item_colon' => '親分類：',
-            'edit_item' => '編集',
-            'update_item' => '更新',
-            'add_new_item' => 'カテゴリを追加',
-            'new_item_name' => '名前',
-        ),
-        'show_ui' => true, /* 管理画面にメニューを作る */
-        'rewrite' => array(
-            'slug' => 'foods', 'with_front' => true, 'hierarchical' => true
-        ),
-        'capabilities' => array(
-            'assign_terms' => 'edit_guides',
-            'edit_terms' => 'publish_guides'
+    register_taxonomy(
+        'food-type',   //カスタムタクソノミー名
+        'food',   //このタクソノミーが使われる投稿タイプ
+        array(
+            'label' => '国別の食べ物',  //カスタムタクソノミーのラベル
+            'labels' => array(
+                'popular_items' => 'よく使うカテゴリー',
+                'edit_item' => 'カテゴリーを編集',
+                'add_new_item' => '新規カテゴリーを追加',
+                'search_items' => 'カテゴリーを検索'
+            ),
+            'public' => true,  // 管理画面及びサイト上に公開
+            'description' => '国別の説明です。',  //説明文
+            'hierarchical' => true,  //カテゴリー形式
+            'show_in_rest' => true  //Gutenberg で表示
         )
-    ));
+    );
+    register_taxonomy(
+        'food-year',   //カスタムタクソノミー名
+        'food',  //このタクソノミーが使われる投稿タイプ
+        array(
+            'label' => '食べた年', //カスタムタクソノミーのラベル
+            'labels' => array(
+                'popular_items' => 'よく使うタグ',
+                'edit_item' => '編集',
+                'add_new_item' => '新規を追加',
+                'search_items' => 'タグを検索'
+            ),
+            'public' => true,  // 管理画面及びサイト上に公開
+            'description' => '食べた年です',  //説明文
+            'hierarchical' => false, //タグ形式
+            'update_count_callback' => '_update_post_term_count',
+            'show_in_rest' => true //Gutenberg で表示
+        )
+    );
 }
 add_action('init', 'create_post_type');
+
+/* 管理画面での表示項目追加 */
+function add_custom_column($defaults)
+{
+    $defaults['food-type'] = '国別の食べ物'; //'blog_cat'はタクソノミー名
+    $defaults['food-year'] = '食べた年'; //タクソノミーは複数可
+    return $defaults;
+}
+add_filter('manage_food_posts_columns', 'add_custom_column'); //ここでの’blog’はカスタム投稿タイプ
+
+function add_custom_column_id($column_name, $id)
+{
+    $terms = get_the_terms($id, $column_name);
+    if ($terms && !is_wp_error($terms)) {
+        $blog_cat_links = array();
+        foreach ($terms as $term) {
+            $blog_cat_links[] = $term->name;
+        }
+        echo join(", ", $blog_cat_links);
+    }
+}
+add_action('manage_food_posts_custom_column', 'add_custom_column_id', 10, 2); //ここでの’blog’はカスタム投稿タイプ
 
 //カテゴリーアーカイブにカスタム投稿タイプ food を含める（表示させる）
 function add_my_post_category_archive($query)
@@ -128,3 +176,25 @@ function add_my_post_tag_archive($query)
     }
 }
 add_action('pre_get_posts', 'add_my_post_tag_archive');
+
+
+
+//お問い合わせフォームの送信後にサンクスページへ飛ばす
+
+$contact = 'contact';
+$thanks = 'thanks';
+function redirect_thanks_page()
+{
+    global $contact;
+    global $thanks;
+
+    if (is_page($contact)) {
+?>
+<script>
+document.addEventListener('wpcf7mailsent', function(event) {
+    location = '<?php echo home_url('/' . $thanks); ?>'; // 遷移先のURL
+}, false);
+</script>
+<?php }
+}
+add_action('wp_footer', 'redirect_thanks_page');

@@ -1064,88 +1064,115 @@ body.page-service {
 
 /* Contact Form7 */
 .contact7 {
-  max-width: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.contact7 dd {
+.contact7__info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 1rem;
+}
+
+.contact7__label {
+  padding-left: 0.5rem;
+}
+
+.contact7 input {
   margin: 0 0 30px 0;
   background-color: #fff;
   border: 1px solid #000;
 }
 
-.contact7 dt {
-  font-weight: normal;
-  max-width: 33%;
+.contact7 textarea {
+  max-width: 100%;
+  margin: 0 0 30px 0;
+  background-color: #fff;
+  border: 1px solid #000;
 }
 
-/* 必須マーク */
-.contact7 .must {
-  background: #ff1a00;
+.contact7__submit {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
-/* 任意マーク */
-.contact7 .optional {
-  background: #999;
+.contact7__checkbox {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 1px solid #000000;
 }
 
-.contact7 .must,
-.contact7 .optional {
+.contact7__must {
+  background: #000000;
   color: #fff;
   border-radius: 3px;
   font-size: 10px;
-  margin-left: 10px;
   padding: 5px 10px;
   letter-spacing: 2px;
 }
 
-.btn_contact7 {
+.contact7__optional {
+  background: #fffff7;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  font-size: 10px;
+  padding: 5px 10px;
+  letter-spacing: 2px;
+}
+
+.contact7__btn {
   text-align: center;
 }
 
-.btn_contact7 input {
-  width: 70%;
-  background-color: #005513;
+.contact7__btn input {
+  min-width: 50%;
+  background: #000000;
   color: #fff;
-  font-size: 1.1em;
-  font-weight: bold;
-  letter-spacing: 0.2em;
-  border: 1px solid #005513;
+  border-radius: 3px;
+  border: #000000 solid 1px;
+  font-size: 1rem;
+  margin-top: 1rem;
+  padding: 5px 10px;
+  letter-spacing: 2px;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.btn_contact7 input:hover {
+.contact7__btn input:hover {
   background-color: #fff;
-  color: #005513;
-}
-
-@media screen and (min-width: 768px) {
-  .contact7 dt {
-    float: left;
-    clear: left;
-    width: 35%;
-    padding: 5px 10px 5px 0;
-  }
-  .contact7 dd {
-    margin-left: 35%;
-  }
-  .btn_contact7 input {
-    width: 70%;
-    background-color: #005513;
-    color: #fff;
-    font-size: 1.1em;
-    font-weight: bold;
-    letter-spacing: 0.2em;
-    border: 1px solid #005513;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
-  }
-  .btn_contact7 input:hover {
-    background-color: #fff;
-    color: #005513;
-  }
+  color: #000000;
+  border: #000 solid 1px;
 }
 
 .single-nav {
@@ -1320,6 +1347,14 @@ body.page-service {
   padding: 5px 8px;
   border: solid 1px #6a808a;
   margin: 0 1.5rem;
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+}
+
+.work-list__year {
+  padding: 5px 8px;
+  border: solid 1px #6a808a;
 }
 
 .work-list__thumbnail {

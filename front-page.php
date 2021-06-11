@@ -56,14 +56,14 @@
                     <?php
                     $news_query = new WP_Query(
                         array(
-                            'post_type' => array('post', 'food'),
-                            'tax_query' => array(
+                            'post_type' => array('food'),
+                            /* 'tax_query' => array(
                                 array(
                                     'taxonomy' => 'category',
                                     'field'    => 'slug',
                                     'terms'    => 'Food',
                                 ),
-                            ),
+                            ), */
                             'posts_per_page' => 6,
                         )
                     );
@@ -73,9 +73,11 @@
                     <li class="work-list__item swiper-slide">
                         <?php the_post_thumbnail('large', array('class' => 'work-list__thumbnail')); ?>
                         <div class="work-list__link">
+                            <div class="work-list__date">
+                                <?php the_terms($post->ID, 'food-year') ?>
+                            </div>
                             <div class="work-list__category">
-                                <?php $cat = get_the_category();
-                                        echo $cat[0]->name; ?>
+                                <?php the_terms($post->ID, 'food-type') ?>
                             </div>
                             <div class="work-list__title">
                                 <?php the_title(); ?>
