@@ -2,7 +2,6 @@
 function my_scripts()
 {
     wp_register_style('reset_css', get_template_directory_uri() . '/css/destyle.css', array(), '1.0.0', 'all');
-
     //Swiper
     wp_enqueue_style('Swiper_css', 'https://unpkg.com/swiper/swiper-bundle.min.css', array('reset_css'), '1.0.0', 'all');
     wp_enqueue_script('Swiper_js', 'https://unpkg.com/swiper/swiper-bundle.min.js', array('jquery'), '1.0.0', false);
@@ -12,20 +11,16 @@ function my_scripts()
 }
 add_action('wp_enqueue_scripts', 'my_scripts');
 
-function sample_scripts()
+/* 投稿記事を投稿する時、aタグにクラス名を追加する */
+function my_replace_to_custom_tags($postarr)
 {
-    // sample-pageというページの場合のみ
-    if (is_page(['sample-page'])) {
-        // phpの値を受け取るjavascriptを読み込みます。
-        wp_enqueue_script('some_handle', 'path/to/myscript.js', array('jquery'), false, true);
-        // phpの配列を$data_array変数に格納します
-        $data_array = array('some_string' => 'texttext', 'a_value' => '10');
-        // javascript変数で処理します。
-        wp_localize_script('some_handle', 'object_name', $data_array);
-    }
+    $class = 'single__link';
+    $postarr['post_content'] = str_replace('<a ', '<a class="' . $class . '" ', $postarr['post_content']);
+    return $postarr;
 }
-add_action('wp_enqueue_scripts', 'sample_scripts');
+add_filter('wp_insert_post_data', 'my_replace_to_custom_tags');
 
+/* サムネ機能オン */
 function theme_setup()
 {
     add_theme_support('post-thumbnails', array('post', 'food'));
@@ -144,8 +139,6 @@ function add_custom_column($defaults)
     $defaults['food-year'] = '食べた年'; //タクソノミーは複数可
     return $defaults;
 }
-add_filter('manage_food_posts_columns', 'add_custom_column'); //ここでの’blog’はカスタム投稿タイプ
-
 function add_custom_column_id($column_name, $id)
 {
     $terms = get_the_terms($id, $column_name);
@@ -157,6 +150,7 @@ function add_custom_column_id($column_name, $id)
         echo join(", ", $blog_cat_links);
     }
 }
+add_filter('manage_food_posts_columns', 'add_custom_column'); //ここでの’blog’はカスタム投稿タイプ
 add_action('manage_food_posts_custom_column', 'add_custom_column_id', 10, 2); //ここでの’blog’はカスタム投稿タイプ
 
 //カテゴリーアーカイブにカスタム投稿タイプ food を含める（表示させる）

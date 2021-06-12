@@ -5,7 +5,7 @@
     <div class="margin__page-top"></div>
     <div class="margin__box">
         <h1 class="work-info__title">
-            <?php echo get_query_var('post_type'); ?> Archive
+            <?php single_term_title(); ?> taxonomy
         </h1>
         <ul class="work-list--workpage">
             <?php

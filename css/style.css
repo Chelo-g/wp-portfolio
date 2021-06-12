@@ -113,6 +113,10 @@ body.page-service {
   min-height: calc(100vh - 50px);
 }
 
+.single__link {
+  color: #e85454;
+}
+
 .btn-contact {
   z-index: 3;
   color: #fffff7;
@@ -1094,6 +1098,7 @@ body.page-service {
 }
 
 .contact7 input {
+  max-width: 100%;
   margin: 0 0 30px 0;
   background-color: #fff;
   border: 1px solid #000;
@@ -1347,9 +1352,6 @@ body.page-service {
   padding: 5px 8px;
   border: solid 1px #6a808a;
   margin: 0 1.5rem;
-  pointer-events: none;
-  cursor: default;
-  text-decoration: none;
 }
 
 .work-list__year {

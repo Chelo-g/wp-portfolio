@@ -1,3 +1,6 @@
 .single {
   min-height: calc(100vh - 50px);
+  &__link {
+    color: $sub-color1;
+  }
 }

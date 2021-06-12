@@ -9,7 +9,7 @@
 
 
     <div class="margin__article"></div>
-    <div class="work-info">
+    <div class="margin__box">
         <div class="work-info__box">
             <h1 class="work-info__title"><a class="nav__link" href="<?php echo get_category_link(3); ?>">Works</a></h1>
             <div class="swiper-container fornt-page-swiper">
@@ -74,10 +74,10 @@
                         <?php the_post_thumbnail('large', array('class' => 'work-list__thumbnail')); ?>
                         <div class="work-list__link">
                             <div class="work-list__date">
-                                <?php the_terms($post->ID, 'food-year') ?>
+                                <?php get_term_link(the_terms($post->ID, 'food-year')) ?>
                             </div>
                             <div class="work-list__category">
-                                <?php the_terms($post->ID, 'food-type') ?>
+                                <?php get_term_link(the_terms($post->ID, 'food-type')) ?>
                             </div>
                             <div class="work-list__title">
                                 <?php the_title(); ?>
