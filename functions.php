@@ -27,6 +27,7 @@ function theme_setup()
 }
 add_action('after_setup_theme', 'theme_setup');
 
+/* ページネーション設定 */
 function the_pagination()
 {
     global $wp_query;
@@ -52,6 +53,7 @@ function the_pagination()
     echo '</nav>';
 }
 
+/* クエリでの表示件数設定 */
 function change_posts_per_page($query)
 {
     /* 管理画面,メインクエリに干渉しないために必須 */
@@ -71,7 +73,7 @@ function change_posts_per_page($query)
 }
 add_action('pre_get_posts', 'change_posts_per_page');
 
-
+/* 投稿タイプ設定 */
 function create_post_type()
 {
     register_post_type(
@@ -152,6 +154,17 @@ function add_custom_column_id($column_name, $id)
 }
 add_filter('manage_food_posts_columns', 'add_custom_column'); //ここでの’blog’はカスタム投稿タイプ
 add_action('manage_food_posts_custom_column', 'add_custom_column_id', 10, 2); //ここでの’blog’はカスタム投稿タイプ
+
+/* postアーカイブページ作成 */
+function post_has_archive($args, $post_type)
+{
+    if ('post' == $post_type) {
+        $args['rewrite'] = true;
+        $args['has_archive'] = 'work'; //URLとして使いたい文字列
+    }
+    return $args;
+}
+add_filter('register_post_type_args', 'post_has_archive', 10, 2);
 
 //カテゴリーアーカイブにカスタム投稿タイプ food を含める（表示させる）
 function add_my_post_category_archive($query)

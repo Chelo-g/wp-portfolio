@@ -49,10 +49,15 @@
         <nav class="nav">
             <ul class="nav__items">
                 <!-- category id 4:practice 5:work -->
+
                 <li class="nav__item"><a class="nav__link" href="<?php echo home_url('about'); ?>">About</a></li>
                 <li class="nav__item"><a class="nav__link" href="<?php echo home_url('service'); ?>">Service</a></li>
-                <li class="nav__item"><a class="nav__link" href="<?php echo get_category_link(5); ?>">Work</a></li>
-                <li class="nav__item"><a class="nav__link" href="<?php echo get_category_link(4); ?>">Practice</a></li>
+                <?php $cat_news = get_category_by_slug('work'); ?>
+                <li class="nav__item"><a class="nav__link"
+                        href="<?php echo get_category_link($cat_news->cat_ID); ?>">Work</a></li>
+                <?php $cat_news = get_category_by_slug('practice'); ?>
+                <li class="nav__item"><a class="nav__link"
+                        href="<?php echo get_category_link($cat_news->cat_ID); ?>">Practice</a></li>
                 <li class="nav__item"><a class="nav__link"
                         href="<?php echo  get_post_type_archive_link('food'); ?>">Food</a></li>
                 <li class="nav__item"> <a Contact class="nav__link"

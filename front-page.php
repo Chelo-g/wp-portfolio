@@ -11,7 +11,9 @@
     <div class="margin__article"></div>
     <div class="margin__box">
         <div class="work-info__box">
-            <h1 class="work-info__title"><a class="nav__link" href="<?php echo get_category_link(3); ?>">Works</a></h1>
+            <h1 class="work-info__title">
+                Works
+            </h1>
             <div class="swiper-container fornt-page-swiper">
                 <ul class="work-list swiper-wrapper">
                     <?php if (have_posts()) :
@@ -49,7 +51,7 @@
             <?php
             //echo get_category_link(get_cat_ID('Food'));
             echo get_post_type_archive_link('food'); ?>">
-                    foods</a>
+                    Food Archive</a>
             </h1>
             <div class="swiper-container fornt-page-swiper">
                 <ul class="work-list swiper-wrapper">
